@@ -59,49 +59,54 @@ for (auto i : v) {
 
 ## 3. Tóm tắt
 
-| **Thao tác**                      | **Mô tả**                                                   | **Cú pháp**                              | **Ví dụ**                                                         |
-| --------------------------------- | ----------------------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------- |
-| **Khởi tạo**                      | Tạo vector mới                                              | `vector<int> v;`                         | `vector<int> v(5, 10);`                                           |
-| **Thêm phần tử**                  | Thêm phần tử vào cuối vector                                | `v.push_back(x);`                        | `v.push_back(5);`                                                 |
-| **Thêm phần tử hiệu quả**         | Thêm phần tử vào cuối, hiệu quả hơn trong một số trường hợp | `v.emplace_back(x);`                     | `v.emplace_back(5);`                                              |
-| **Xóa phần tử cuối**              | Loại bỏ phần tử cuối                                        | `v.pop_back();`                          | `v.pop_back();`                                                   |
-| **Xóa phần tử tại vị trí**        | Loại bỏ một hoặc nhiều phần tử tại vị trí chỉ định          | `v.erase(v.begin() + i);`                | `v.erase(v.begin() + 2);`                                         |
-| **Xóa một khoảng phần tử**        | Loại bỏ một dải phần tử từ vị trí `a` đến `b`               | `v.erase(v.begin() + a, v.begin() + b);` | `v.erase(v.begin(), v.begin() + 3);`                              |
-| **Xóa tất cả phần tử**            | Xóa toàn bộ các phần tử trong vector                        | `v.clear();`                             | `v.clear();`                                                      |
-| **Truy cập phần tử**              | Lấy phần tử tại vị trí `i`                                  | `v[i]` hoặc `v.at(i)`                    | `cout << v[2];`                                                   |
-| **Phần tử đầu tiên**              | Lấy giá trị phần tử đầu tiên                                | `v.front();`                             | `cout << v.front();`                                              |
-| **Phần tử cuối cùng**             | Lấy giá trị phần tử cuối cùng                               | `v.back();`                              | `cout << v.back();`                                               |
-| **Kích thước hiện tại**           | Số lượng phần tử hiện tại trong vector                      | `v.size();`                              | `cout << v.size();`                                               |
-| **Dung lượng (capacity)**         | Dung lượng (capacity) hiện tại của vector                   | `v.capacity();`                          | `cout << v.capacity();`                                           |
-| **Dự trữ dung lượng**             | Đặt dung lượng tối thiểu cho vector                         | `v.reserve(n);`                          | `v.reserve(20);`                                                  |
-| **Giảm dung lượng**               | Giảm dung lượng vector về bằng kích thước                   | `v.shrink_to_fit();`                     | `v.shrink_to_fit();`                                              |
-| **Kiểm tra rỗng**                 | Kiểm tra vector có rỗng không                               | `v.empty();`                             | `if (v.empty()) cout << "Rỗng";`                                  |
-| **Thay đổi kích thước**           | Thay đổi số lượng phần tử, thêm giá trị mặc định nếu cần    | `v.resize(n, x);`                        | `v.resize(10, 0);`                                                |
-| **Duyệt qua phần tử**             | Duyệt qua từng phần tử trong vector                         | `for (auto x : v)` hoặc `for_each`       | `for (int i = 0; i < v.size(); i++) cout << v[i];`                |
-| **Đảo vector**                    | Đảo ngược thứ tự các phần tử                                | `reverse(v.begin(), v.end());`           | `reverse(v.begin(), v.end());`                                    |
-| **Sắp xếp**                       | Sắp xếp vector tăng dần hoặc giảm dần                       | `sort(v.begin(), v.end());`              | `sort(v.begin(), v.end(), greater<int>());`                       |
-| **Chèn phần tử tại vị trí**       | Chèn phần tử vào vị trí chỉ định                            | `v.insert(v.begin() + i, x);`            | `v.insert(v.begin() + 2, 10);`                                    |
-| **Chèn nhiều phần tử**            | Chèn nhiều phần tử tại vị trí chỉ định                      | `v.insert(v.begin() + i, n, x);`         | `v.insert(v.begin() + 1, 3, 7);`                                  |
-| **Truy cập iterator**             | Lấy iterator chỉ đến phần tử đầu/cuối                       | `v.begin(), v.end()`                     | `for (auto it = v.begin(); it != v.end(); ++it) cout << *it;`     |
-| **Sao chép vector**               | Tạo bản sao của vector                                      | `vector<int> v2 = v1;`                   | `vector<int> v2 = v1;`                                            |
-| **Hoán đổi**                      | Hoán đổi nội dung giữa hai vector                           | `v1.swap(v2);`                           | `v1.swap(v2);`                                                    |
-| **Di chuyển dữ liệu**             | Di chuyển nội dung vector thay vì sao chép                  | `std::move(v1);`                         | `vector<int> v2 = std::move(v1);`                                 |
-| **So sánh vector**                | So sánh hai vector (`==`, `!=`, `<`, `>`, ...)              | `v1 == v2;`                              | `if (v1 == v2) cout << "Bằng nhau";`                              |
-| **Sử dụng allocator**             | Lấy bộ cấp phát bộ nhớ của vector                           | `v.get_allocator();`                     | `auto alloc = v.get_allocator();`                                 |
-| **Cập nhật phần tử với iterator** | Gán giá trị mới cho phần tử thông qua iterator              | `*it = x;`                               | `auto it = v.begin(); *it = 10;\n`                                |
-| **Truy cập vùng dữ liệu thô**     | Lấy con trỏ tới vùng dữ liệu lưu trữ các phần tử            | `v.data();`                              | `int* ptr = v.data(); cout << ptr[0];\n`                          |
-| **Giới hạn dung lượng lớn nhất**  | Lấy dung lượng tối đa mà vector có thể đạt được             | `v.max_size();`                          | `cout << v.max_size();\n`                                         |
-| **Gán lại giá trị**               | Gán giá trị cho toàn bộ vector                              | `v.assign(n, x);`                        | `v.assign(5, 10);\n`                                              |
-| **Gán từ một dải**                | Gán giá trị từ một dải (iterators)                          | `v.assign(first, last);`                 | `int arr[] = {1, 2, 3};\nv.assign(arr, arr + 3);\n`               |
-| **Chèn từ một dải**               | Chèn các phần tử từ một dải (iterators)                     | `v.insert(it, first, last);`             | `int arr[] = {4, 5, 6};\nv.insert(v.begin(), arr, arr + 3);\n`    |
-| **Xóa và trả iterator**           | Xóa phần tử và trả iterator tới phần tử kế tiếp             | `v.erase(it);`                           | `auto it = v.erase(v.begin());\n`                                 |
-| **Cắt vector bằng `resize`**      | Giảm số phần tử vector bằng `resize`                        | `v.resize(n);`                           | `v.resize(3); // Giữ lại 3 phần tử đầu\n`                         |
-| **Đảo ngược iterator**            | Sử dụng reverse_iterator                                    | `v.rbegin(), v.rend()`                   | `for (auto it = v.rbegin(); it != v.rend(); ++it) cout << *it;\n` |
+| **Thao tác**                                           | **Cú pháp**                              | **Ví dụ**                                                     |
+| ------------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------------- |
+| **Khởi tạo**                                           | `vector<int> v;`                         | `vector<int> v(5, 10);`                                       |
+| **Thêm phần tử vào cuối**                              | `v.push_back(x);`                        | `v.push_back(5);`                                             |
+| **Thêm phần tử hiệu quả**                              | `v.emplace_back(x);`                     | `v.emplace_back(5);`                                          |
+| **Xóa phần tử cuối**                                   | `v.pop_back();`                          | `v.pop_back();`                                               |
+| **Xóa phần tử tại vị trí**                             | `v.erase(v.begin() + i);`                | `v.erase(v.begin() + 2);`                                     |
+| **Xóa một khoảng phần tử**                             | `v.erase(v.begin() + a, v.begin() + b);` | `v.erase(v.begin(), v.begin() + 3);`                          |
+| **Xóa tất cả phần tử**                                 | `v.clear();`                             | `v.clear();`                                                  |
+| **Truy cập phần tử**                                   | `v[i]` hoặc `v.at(i)`                    | `cout << v[2];`                                               |
+| **Phần tử đầu tiên**                                   | `v.front();`                             | `cout << v.front();`                                          |
+| **Phần tử cuối cùng**                                  | `v.back();`                              | `cout << v.back();`                                           |
+| **Kích thước hiện tại**                                | `v.size();`                              | `cout << v.size();`                                           |
+| **Dung lượng (capacity)**                              | `v.capacity();`                          | `cout << v.capacity();`                                       |
+| **Dự trữ dung lượng, đặt dung lượng tối thiểu**        | `v.reserve(n);`                          | `v.reserve(20);`                                              |
+| **Giảm dung lượng về bằng kích thước**                 | `v.shrink_to_fit();`                     | `v.shrink_to_fit();`                                          |
+| **Kiểm tra rỗng**                                      | `v.empty();`                             | `if (v.empty()) cout << "Rỗng";`                              |
+| **Thay đổi kích thước, thêm giá trị mặc định nếu cần** | `v.resize(n, x);`                        | `v.resize(10, 0);`                                            |
+| **Duyệt qua phần tử**                                  | `for (auto x : v)` hoặc `for_each`       | `for (int i = 0; i < v.size(); i++) cout << v[i];`            |
+| **Đảo vector**                                         | `reverse(v.begin(), v.end());`           | `reverse(v.begin(), v.end());`                                |
+| **Sắp xếp**                                            | `sort(v.begin(), v.end());`              | `sort(v.begin(), v.end(), greater<int>());`                   |
+| **Chèn phần tử tại vị trí chỉ định**                   | `v.insert(v.begin() + i, x);`            | `v.insert(v.begin() + 2, 10);`                                |
+| **Chèn nhiều phần tử tại vị trí chỉ định**             | `v.insert(v.begin() + i, n, x);`         | `v.insert(v.begin() + 1, 3, 7);`                              |
+| **Truy cập iterator**                                  | `v.begin(), v.end()`                     | `for (auto it = v.begin(); it != v.end(); ++it) cout << *it;` |
+| **Sao chép vector**                                    | `vector<int> v2 = v1;`                   | `vector<int> v2 = v1;`                                        |
+| **Hoán đổi**                                           | `v1.swap(v2);`                           | `v1.swap(v2);`                                                |
+| **So sánh vector (`==`, `!=`, `<`, `>`, ...)**         | `v1 == v2;`                              | `if (v1 == v2) cout << "Bằng nhau";`                          |
+| **Di chuyển dữ liệu thay vì sao chép**                 | `std::move(v1);`                         | `vector<int> v2 = std::move(v1);`                             |
+
+| **Thao tác**                      | **Mô tả**                                                            | **Cú pháp**                    | **Ví dụ**                                                       |
+| --------------------------------- | -------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------- |
+| **Sử dụng allocator**             | Lấy bộ cấp phát bộ nhớ của vector                                    | `v.get_allocator();`           | `auto alloc = v.get_allocator();`                               |
+| **Cập nhật phần tử với iterator** | Gán giá trị mới cho phần tử thông qua iterator                       | `*it = x;`                     | `auto it = v.begin(); *it = 10;`                                |
+| **Truy cập vùng dữ liệu thô**     | Lấy con trỏ tới vùng dữ liệu lưu trữ các phần tử                     | `v.data();`                    | `int* ptr = v.data(); cout << ptr[0];`                          |
+| **Giới hạn dung lượng lớn nhất**  | Lấy dung lượng tối đa mà vector có thể đạt được                      | `v.max_size();`                | `cout << v.max_size();`                                         |
+| **Gán lại giá trị**               | Gán giá trị cho toàn bộ vector                                       | `v.assign(n, x);`              | `v.assign(5, 10);`                                              |
+| **Gán từ một dải**                | Gán giá trị từ một dải (iterators)                                   | `v.assign(first, last);`       | `int arr[] = {1, 2, 3}; v.assign(arr, arr + 3);`                |
+| **Chèn từ một dải**               | Chèn các phần tử từ một dải (iterators)                              | `v.insert(it, first, last);`   | `int arr[] = {4, 5, 6}; v.insert(v.begin(), arr, arr + 3);`     |
+| **Xóa và trả iterator**           | Xóa phần tử và trả iterator tới phần tử kế tiếp                      | `v.erase(it);`                 | `auto it = v.erase(v.begin());`                                 |
+| **Cắt vector bằng `resize`**      | Giảm số phần tử vector bằng `resize`                                 | `v.resize(n);`                 | `v.resize(3); // Giữ lại 3 phần tử đầu`                         |
+| **Đảo ngược iterator**            | Sử dụng reverse_iterator                                             | `v.rbegin(), v.rend()`         | `for (auto it = v.rbegin(); it != v.rend(); ++it) cout << *it;` |
+| **min max**                       | Chúng trả về iterator trỏ tới phần tử nhỏ nhất/lớn nhất trong vector | `min_element` và `max_element` | `auto min_it = std::min_element(v.begin(), v.end());`           |
+| **index min max**                 | Tính chỉ số của iterator bằng cách lấy khoảng cách từ v.begin()      | `std::distance`                | `int min_index = std::distance(v.begin(), min_it);`             |
 
 ### Với `std::vector<bool>`
 
-| **Thao tác**             | **Mô tả**                        | **Cú pháp**          | **Ví dụ**                             |
-| ------------------------ | -------------------------------- | -------------------- | ------------------------------------- |
-| **Truy cập bit**         | Truy cập và thay đổi giá trị bit | `v[i] = true;`       | `cpp\nv[1] = false;\n`                |
-| **Gán giá trị bit**      | Gán giá trị cho vector           | `v.assign(n, true);` | `cpp\nv.assign(10, false);\n`         |
-| **Kiểm tra giá trị bit** | Kiểm tra giá trị tại vị trí      | `v.at(i)`            | `cpp\nif (v.at(1)) cout << "True";\n` |
+| **Thao tác**             | **Mô tả**                        | **Cú pháp**          | **Ví dụ**                        |
+| ------------------------ | -------------------------------- | -------------------- | -------------------------------- |
+| **Truy cập bit**         | Truy cập và thay đổi giá trị bit | `v[i] = true;`       | `v[1] = false;\n`                |
+| **Gán giá trị bit**      | Gán giá trị cho vector           | `v.assign(n, true);` | `v.assign(10, false);\n`         |
+| **Kiểm tra giá trị bit** | Kiểm tra giá trị tại vị trí      | `v.at(i)`            | `if (v.at(1)) cout << "True";\n` |
