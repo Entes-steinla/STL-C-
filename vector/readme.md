@@ -59,6 +59,8 @@ for (auto i : v) {
 
 ## 3. Tóm tắt
 
+### Cơ bản
+
 | **Thao tác**                                           | **Cú pháp**                              | **Ví dụ**                                                     |
 | ------------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------------- |
 | **Khởi tạo**                                           | `vector<int> v;`                         | `vector<int> v(5, 10);`                                       |
@@ -88,6 +90,8 @@ for (auto i : v) {
 | **So sánh vector (`==`, `!=`, `<`, `>`, ...)**         | `v1 == v2;`                              | `if (v1 == v2) cout << "Bằng nhau";`                          |
 | **Di chuyển dữ liệu thay vì sao chép**                 | `std::move(v1);`                         | `vector<int> v2 = std::move(v1);`                             |
 
+### Nâng cao
+
 | **Thao tác**                      | **Mô tả**                                                            | **Cú pháp**                    | **Ví dụ**                                                       |
 | --------------------------------- | -------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------- |
 | **Sử dụng allocator**             | Lấy bộ cấp phát bộ nhớ của vector                                    | `v.get_allocator();`           | `auto alloc = v.get_allocator();`                               |
@@ -103,7 +107,7 @@ for (auto i : v) {
 | **min max**                       | Chúng trả về iterator trỏ tới phần tử nhỏ nhất/lớn nhất trong vector | `min_element` và `max_element` | `auto min_it = std::min_element(v.begin(), v.end());`           |
 | **index min max**                 | Tính chỉ số của iterator bằng cách lấy khoảng cách từ v.begin()      | `std::distance`                | `int min_index = std::distance(v.begin(), min_it);`             |
 
-### Với `std::vector<bool>`
+### `std::vector<bool>`
 
 | **Thao tác**             | **Mô tả**                        | **Cú pháp**          | **Ví dụ**                        |
 | ------------------------ | -------------------------------- | -------------------- | -------------------------------- |
