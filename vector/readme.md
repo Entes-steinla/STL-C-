@@ -109,8 +109,8 @@ for (auto i : v) {
 
 ### `std::vector<bool>`
 
-| **Thao tác**             | **Mô tả**                        | **Cú pháp**          | **Ví dụ**                        |
-| ------------------------ | -------------------------------- | -------------------- | -------------------------------- |
-| **Truy cập bit**         | Truy cập và thay đổi giá trị bit | `v[i] = true;`       | `v[1] = false;\n`                |
-| **Gán giá trị bit**      | Gán giá trị cho vector           | `v.assign(n, true);` | `v.assign(10, false);\n`         |
-| **Kiểm tra giá trị bit** | Kiểm tra giá trị tại vị trí      | `v.at(i)`            | `if (v.at(1)) cout << "True";\n` |
+| **Thao tác**             | **Mô tả**                        | **Cú pháp**          | **Ví dụ**                      |
+| ------------------------ | -------------------------------- | -------------------- | ------------------------------ |
+| **Truy cập bit**         | Truy cập và thay đổi giá trị bit | `v[i] = true;`       | `v[1] = false;`                |
+| **Gán giá trị bit**      | Gán giá trị cho vector           | `v.assign(n, true);` | `v.assign(10, false);`         |
+| **Kiểm tra giá trị bit** | Kiểm tra giá trị tại vị trí      | `v.at(i)`            | `if (v.at(1)) cout << "True";` |
